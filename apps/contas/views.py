@@ -45,3 +45,9 @@ def configuracoes(request):
         formulario = ConfiguracoesForm(instance=request.user)
     contexto['formulario'] = formulario
     return render(request, 'contas/configuracoes.html', contexto)
+
+
+@login_required
+def perfil(request):
+    contexto = {}
+    return render(request, 'contas/perfil.html', contexto)

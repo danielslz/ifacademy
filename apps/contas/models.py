@@ -1,3 +1,16 @@
-from django.db import models
+# coding=utf-8
 
-# Create your models here.
+from django.db import models
+from django.contrib.auth.models import User
+
+
+class Perfil(models.Model):
+    usuario = models.OneToOneField(User, verbose_name=u'Usuário', related_name='perfil')
+    foto = models.ImageField('Foto', upload_to='fotos')
+
+    def __unicode__(self):
+        return unicode(self.usuario)
+
+    class Meta:
+        verbose_name = 'Perfil'
+        verbose_name_plural = 'Perfis'

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block principal %}
+    <h1 class="page-header">Meu Perfil</h1>
+    <p>
+        <strong>Usuário</strong>: {{ user.first_name }}
+    </p>
+    <p>
+        <strong>Foto</strong>:
+            <img src="{{ user.perfil.foto.url }}" alt="" />
+    </p>
+{% endblock %}

@@ -33,7 +33,7 @@ class Curso(models.Model):
 class Disciplina(models.Model):
 
     curso = models.ForeignKey(
-        Curso, verbose_name=u'Curso',
+        Curso, verbose_name=u'Curso', related_name='disciplinas'
     )
     titulo = models.CharField(
         u'Título', max_length=100
