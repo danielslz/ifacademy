@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block principal %}
+<h1 class="page-header">Cursos</h1>
+{% for curso in cursos %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <a href="{% url 'curso_detalhes' curso.id %}">{{ curso.titulo }}</a>
+  </div>
+  <div class="panel-body">
+    {{ curso.descricao|linebreaksbr }}
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
