@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block principal %}
+    <h1 class="page-header">Suporte</h1>
+    <form class="" action="" method="post">
+        {% csrf_token %}
+        {% for campo in formulario %}
+        <div class="form-group {% if campo.errors %}has-error{% endif %}">
+            {{ campo.label_tag }}
+            {% render_field campo class='form-control' %}
+            {% for erro in campo.errors %}
+                <span class="help-block">{{ erro }}</span>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <p>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </p>
+    </form>
+{% endblock %}
