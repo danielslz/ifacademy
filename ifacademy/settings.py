@@ -30,7 +30,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'apps.core',
+    'apps.comum',
+    'apps.cursos',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -74,7 +75,7 @@ DATABASES = {'default':  dj_database_url.config()}
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 
@@ -92,6 +93,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 
 try:
-    .local_settings import *
+    from .local_settings import *
 except ImportError:
     pass
