@@ -6,6 +6,14 @@
   <div class="panel-heading">{{ curso.titulo }}</div>
   <div class="panel-body">
     {{ curso.descricao|linebreaksbr }}
+
+    <hr>
+    <h5><abbr title="Disciplinas">Disciplinas</abbr></h5>
+    <ul>
+    {% for disciplina in curso.disciplina_set.all %}
+        <li><a href="{% url 'disciplina_detalhes' disciplina.id %}">{{ disciplina.titulo }}</a></li>
+    {% endfor %}
+    </ul>
   </div>
 </div>
 {% endblock %}

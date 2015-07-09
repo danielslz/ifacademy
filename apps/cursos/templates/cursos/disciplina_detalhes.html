@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block principal %}
+<h1 class="page-header">Cursos</h1>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    {{ disciplina.titulo }}
+    <span class="pull-right label label-primary">{{ disciplina.curso }}</span>
+  </div>
+  <div class="panel-body">
+    {{ disciplina.descricao|linebreaksbr }}
+  </div>
+</div>
+{% endblock %}

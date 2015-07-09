@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block principal %}
+<h1 class="page-header">Cursos</h1>
+{% for disciplina in disciplinas %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <a href="{% url 'disciplina_detalhes' disciplina.id %}">{{ disciplina.titulo }}</a>
+    <span class="pull-right label label-primary">{{ disciplina.curso }}</span>
+  </div>
+  <div class="panel-body">
+    {{ disciplina.descricao|linebreaksbr }}
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
