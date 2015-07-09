@@ -36,14 +36,14 @@
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
                 <li><a href="">Configurações</a></li>
-                <li><a href="#">Perfil</a></li>
+                <li><a href="{% url 'perfil' %}">Perfil</a></li>
                 <li><a href="{% url 'sair' %}">Sair</a></li>
             {% else %}
                 <li><a href="{% url 'entrar' %}">Entrar</a></li>
             {% endif %}
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Pesquisar...">
+          <form class="navbar-form navbar-right" action="{% url 'cursos' %}">
+            <input type="text" class="form-control" placeholder="Pesquisar..." name="q">
           </form>
         </div>
       </div>
@@ -56,11 +56,14 @@
             <li class="active"><a href="{% url 'inicio' %}">Visão Geral <span class="sr-only">(início)</span></a></li>
             <li><a href="{% url 'cursos' %}">Cursos</a></li>
             <li><a href="{% url 'disciplinas' %}">Disciplinas</a></li>
-            <li><a href="{% url 'suporte' %}#">Suporte</a></li>
+            <li><a href="{% url 'suporte' %}">Suporte</a></li>
             <li><a href="#">Relatórios</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            {% if sucesso %}
+                <div class="alert alert-success" role="alert">{{ sucesso }}</div>
+            {% endif %}
             {% block principal %}{% endblock %}
         </div>
       </div>

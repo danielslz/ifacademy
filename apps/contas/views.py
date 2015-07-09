@@ -2,10 +2,12 @@
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from .forms import AutenticarForm
+from .forms import AutenticarForm, PerfilForm
 
 
 def entrar(request):
+    if request.user.is_authenticated():
+        return redirect('inicio')
     contexto = {}
     if request.method == 'POST':
         formulario = AutenticarForm(request.POST)
@@ -27,3 +29,16 @@ def entrar(request):
 def sair(request):
     logout(request)
     return redirect('entrar')
+
+
+def perfil(request):
+    contexto = {}
+    if request.method == 'POST':
+        formulario = PerfilForm(request.POST, instance=request.user)
+        if formulario.is_valid():
+            formulario.save()
+            contexto['sucesso'] = u'Dados alterados com sucesso!'
+    else:
+        formulario = PerfilForm(instance=request.user)
+    contexto['formulario'] = formulario
+    return render(request, 'contas/perfil.html', contexto)

@@ -6,15 +6,17 @@ from .models import Curso, Disciplina
 
 def cursos(request):
     contexto = {}
-    contexto['cursos'] = Curso.objects.all()
+    filtro = request.GET.get('q')
+    if filtro:
+        contexto['cursos'] = Curso.objects.filter(titulo__icontains=filtro)
+    else:
+        contexto['cursos'] = Curso.objects.all()
     return render(request, 'cursos/cursos.html', contexto)
 
 
 def curso_detalhes(request, curso_id):
-    curso = Curso.objects.get(pk=curso_id)
-    contexto = {
-        'curso': curso
-    }
+    contexto = {}
+    contexto['curso'] = Curso.objects.get(pk=curso_id)
     return render(request, 'cursos/curso_detalhes.html', contexto)
 
 
