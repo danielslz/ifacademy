@@ -10,6 +10,12 @@ class AutenticarForm(forms.Form):
 
 
 class ConfiguracoesForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ConfiguracoesForm, self).__init__(*args, **kwargs)
+        self.fields['email'].required = True
+        self.fields['email'].error_messages['required'] = u'Preencha o e-mail'
+        self.fields['email'].label = u'E-mail'
+
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')

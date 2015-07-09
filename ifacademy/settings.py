@@ -95,6 +95,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 
+
+# Configuracoes de usuario
+LOGIN_URL = 'entrar'
+LOGOUT_URL = 'sair'
+LOGIN_REDIRECT_URL = 'inicio'
+
+
+# local settings
 try:
     from .local_settings import *
 except ImportError:

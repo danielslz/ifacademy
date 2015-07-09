@@ -2,6 +2,7 @@
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 from .forms import AutenticarForm, ConfiguracoesForm
 
 
@@ -17,7 +18,7 @@ def entrar(request):
             usuario_valido = authenticate(username=usuario, password=senha)
             if usuario_valido:
                 login(request, usuario_valido)
-                return redirect('inicio')
+                return redirect(request.GET.get('next') or 'inicio')
             else:
                 contexto['erro'] = u'Usuário e/ou senha inválido(s).'
     else:
@@ -26,11 +27,13 @@ def entrar(request):
     return render(request, 'contas/entrar.html', contexto)
 
 
+@login_required
 def sair(request):
     logout(request)
-    return redirect('entrar')
+    return redirect('inicio')
 
 
+@login_required
 def configuracoes(request):
     contexto = {}
     if request.method == 'POST':
