@@ -8,6 +8,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^', include('apps.comum.urls')),
     url(r'^cursos/', include('apps.cursos.urls')),
+    url(r'^contas/', include('apps.contas.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ] + static(
     settings.STATIC_URL,

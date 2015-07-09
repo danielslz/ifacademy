@@ -34,6 +34,7 @@ INSTALLED_APPS = (
 
     'apps.comum',
     'apps.cursos',
+    'apps.contas',
 )
 
 MIDDLEWARE_CLASSES = (
