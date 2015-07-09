@@ -2,7 +2,7 @@
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from .forms import AutenticarForm, PerfilForm
+from .forms import AutenticarForm, ConfiguracoesForm
 
 
 def entrar(request):
@@ -31,14 +31,14 @@ def sair(request):
     return redirect('entrar')
 
 
-def perfil(request):
+def configuracoes(request):
     contexto = {}
     if request.method == 'POST':
-        formulario = PerfilForm(request.POST, instance=request.user)
+        formulario = ConfiguracoesForm(request.POST, instance=request.user)
         if formulario.is_valid():
             formulario.save()
             contexto['sucesso'] = u'Dados alterados com sucesso!'
     else:
-        formulario = PerfilForm(instance=request.user)
+        formulario = ConfiguracoesForm(instance=request.user)
     contexto['formulario'] = formulario
-    return render(request, 'contas/perfil.html', contexto)
+    return render(request, 'contas/configuracoes.html', contexto)
