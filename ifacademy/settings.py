@@ -47,6 +47,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+
+    'apps.comum.middleware.LogMiddleware',
+    'apps.contas.middleware.AutenticacaoObrigatoriaMiddleware',
 )
 
 ROOT_URLCONF = 'ifacademy.urls'
