@@ -31,6 +31,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'widget_tweaks',
+    'easy_thumbnails',
 
     'apps.comum',
     'apps.cursos',
@@ -107,6 +108,15 @@ LOGIN_URL = 'entrar'
 LOGOUT_URL = 'sair'
 LOGIN_REDIRECT_URL = 'inicio'
 
+
+# Thumbnails
+THUMBNAIL_ALIASES = {
+    '': {
+        'perfil': {
+            'size': (100, 100), 'crop': True
+        },
+    },
+}
 
 # local settings
 try:
