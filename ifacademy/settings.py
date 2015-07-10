@@ -118,6 +118,9 @@ THUMBNAIL_ALIASES = {
     },
 }
 
+# E-mail
+DEFAULT_EMAIL_FROM = 'contato@mail.com'
+
 # local settings
 try:
     from .local_settings import *

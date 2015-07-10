@@ -1,3 +1,11 @@
-from django.contrib import admin
+# coding=utf-8
 
-# Register your models here.
+from django.contrib import admin
+from .models import Suporte
+
+
+class SuporteAdmin(admin.ModelAdmin):
+    list_display = ['assunto', 'criado_em']
+    search_fields = ['assunto', 'mensagem']
+
+admin.site.register(Suporte, SuporteAdmin)
