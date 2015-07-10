@@ -1,11 +1,13 @@
 Django==1.8.2
 Jinja2==2.7.3
 MarkupSafe==0.23
+Pillow==2.9.0
 argparse==1.2.1
 backports.ssl-match-hostname==3.4.0.2
 certifi==2015.04.28
 dj-database-url==0.3.0
 django-widget-tweaks==1.4.1
+easy-thumbnails==2.2
 functools32==3.2.3-1
 gunicorn==19.3.0
 ipython==3.2.0
