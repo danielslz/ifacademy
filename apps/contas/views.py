@@ -3,7 +3,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from .forms import AutenticarForm, ConfiguracoesForm
+from apps.contas.models import Perfil
+from .forms import AutenticarForm, ConfiguracoesForm, PerfilForm
 
 
 def entrar(request):
@@ -36,14 +37,27 @@ def sair(request):
 @login_required
 def configuracoes(request):
     contexto = {}
+    try:
+        perfil = request.user.perfil
+    except Perfil.DoesNotExist:
+        perfil = None
     if request.method == 'POST':
         formulario = ConfiguracoesForm(request.POST, instance=request.user)
-        if formulario.is_valid():
+        formulario_perfil = PerfilForm(request.POST, files=request.FILES, instance=perfil)
+        if formulario.is_valid() and formulario_perfil.is_valid():
             formulario.save()
-            contexto['sucesso'] = u'Dados alterados com sucesso!'
+            if perfil is None:
+                perfil = formulario_perfil.save(commit=False)
+                perfil.usuario = request.user
+                perfil.save()
+            else:
+                formulario_perfil.save()
+            contexto['sucesso'] = u'Suas configurações foram salvas com sucesso!'
     else:
         formulario = ConfiguracoesForm(instance=request.user)
+        formulario_perfil = PerfilForm(instance=perfil)
     contexto['formulario'] = formulario
+    contexto['formulario_perfil'] = formulario_perfil
     return render(request, 'contas/configuracoes.html', contexto)
 
 
